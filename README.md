@@ -49,31 +49,25 @@ Upon carefully choosing, analyzing, cleansing, and generating descriptive statis
 
 ## Visualization
 
-From the above scatter plots, we can observe that sqft_living has a continuous positive correlation with price.
-<img width="607" alt="Screenshot 2023-07-22 130056" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/08685c00-e56a-4353-a7e5-bb99a34f327b">
+<img width="690" alt="Scatter plot 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/35b8fa8f-f392-43ef-a592-ded436d60539">
 
-From the boxplots above, bedrooms, bathrooms and sqft_living have outliers but the bedroom data has a significant outlier which we will need to explore further and decide whether to keep it or remove it. Floors data has no outliers.
+
+From the above scatter plot, we observed that sqft_living has a continuous positive correlation with price.
 
 ### Modeling
 
-Recall that the non-technical presentation is a slide deck presenting your analysis to ***business stakeholders***, and should be presented live as well as submitted in PDF form on Canvas.
+<img width="690" alt="Condition 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/fe151ecf-492e-43d2-b7e4-db7357a272e9">
 
-We recommend that you follow this structure, although the slide titles should be specific to your project:
 
-1. Beginning
-    - Overview
-    - Business and Data Understanding
-2. Middle
-    - **Modeling**
-    - **Regression Results**
-3. End
-    - Recommendations
-    - Next Steps
-    - Thank you
+From the bar plot above we observed that houses in very good condition were the most expensive, while the ones in fair and poor condition were the most affordable, therefore the better the condition of the houses the higher the price. 
 
-Make sure that your discussion of modeling and regression results is geared towards a non-technical audience! Assume that their prior knowledge of regression modeling is minimal. You don't need to explain how linear regression works, but you should explain why linear regression is useful for the problem context. Make sure you translate any metrics or coefficients into their plain language implications.
 
-The graded elements for the non-technical presentation are the same as in [Phase 1](https://github.com/learn-co-curriculum/dsc-phase-1-project-v2-3#deliverables).
+### Baseline Model: Simple Linear Regression
+<img width="690" alt="sqft scatter 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/b15ddba1-6fc4-42d6-81b2-39864bb2bb48">
+
+For our multiple linear regression, we built a simple linear regression to be the baseline in order to evaluate our model.
+
+Since sqft_living was the feature with the strongest correlation, we built a simple linear regression with that.
 
 ### Jupyter Notebook
 

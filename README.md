@@ -1,18 +1,20 @@
 # Group 17 Project Description
 
-## Project Overview
-
-For this project, you will use multiple linear regression modeling to analyze house sales in a northwestern county.
+## King County House Sales Analysis & Regression Modeling
+### Project Overview
 
 ### Business Problem
 
 The real estate agency, Amani is facing a challenge in providing valuable advice to homeowners regarding home renovations. Homeowners often inquire about the potential increase in the estimated value of their homes after making specific renovations or improvements. The agency needs to develop a predictive model that can accurately estimate the impact of various renovation projects on a home's market value within the northwestern county.
 
 The goal is to offer data-driven recommendations to homeowners, enabling them to make informed decisions about which renovations to undertake and how these renovations will affect the resale value of their homes.
-  
-### Comprehension Check
-This project involves responding to three distinct inquiries:
-  1. How does the number of bedrooms, bathrooms, grade, and square footage of a house correlate with its sale price in King County?
+
+The questions to be answered are:
+
+  1. How does the number of bedrooms, bathrooms, grade and square footage of a house correlate with its sale price in King County?
+  2. How much can a homeowner expect the value of their home to increase after a specific renovation project?
+  3. Which renovation projects have the most significant impact on a home's market value in the northwestern county?
+  4. Are there specific combinations of renovation projects that provide an interdependent effect on a home's market value?
 
 ### Analysis Overview
 * **Data Understanding**
@@ -22,10 +24,6 @@ This project involves responding to three distinct inquiries:
 * **Data Visualization.**
 
 * **Modelling.**
-
-* **Interpretation of Results**
-
-* **Model Evaluation**
 
 * **Interpretation of Results**
 
@@ -52,224 +50,112 @@ Upon carefully choosing, analyzing, cleansing, and generating descriptive statis
 <img width="690" alt="Scatter plot 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/35b8fa8f-f392-43ef-a592-ded436d60539">
 
 
-From the above scatter plot, we observed that sqft_living has a continuous positive correlation with price.
-
-### Modeling
+From the above scatter plot, we observe that sqft_living has a continuous positive correlation with price.
 
 <img width="690" alt="Condition 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/fe151ecf-492e-43d2-b7e4-db7357a272e9">
 
+From the bar plot above we observe that houses in very good condition are the most expensive, while the ones in fair and poor condition are the most affordable, therefore the better the condition of the houses the higher the price. 
 
-From the bar plot above we observed that houses in very good condition were the most expensive, while the ones in fair and poor condition were the most affordable, therefore the better the condition of the houses the higher the price. 
-
+## Modeling
 
 ### Baseline Model: Simple Linear Regression
 <img width="690" alt="sqft scatter 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/b15ddba1-6fc4-42d6-81b2-39864bb2bb48">
 
 For our multiple linear regression, we built a simple linear regression to be the baseline in order to evaluate our model.
 
-Since sqft_living was the feature with the strongest correlation, we built a simple linear regression with that.
+Since sqft_living was the feature with the strongest correlation, we built a simple linear regression with that. We built a simple linear regression model (Model: OLS) with 'sqft_living' as the only independent variable. From our model, for each additional square foot of living space, the 'price' is expected to increase by 280.863 units when all other factors remain constant.
 
-### Jupyter Notebook
 
-Recall that the Jupyter Notebook is a notebook that uses Python and Markdown to present your analysis to a ***data science audience***. You will submit the notebook in PDF format on Canvas as well as in `.ipynb` format in your GitHub repository.
+### Simple Linear Regression Visualization
 
-The graded elements for the Jupyter Notebook are:
+<img width="690" alt="slr actual" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/5c35ad9e-f59b-4bb7-a8e9-13a809ada3e9"> 
 
-* Business Understanding
-* Data Understanding
-* Data Preparation
-* **Modeling**
-* **Regression Results**
-* Code Quality
+### 2nd Model: Adding another Independent variable
 
-### GitHub Repository
+The second model was a multiple linear regression model (Model: OLS) with 'sqft_living' and 'bedrooms' as independent variables.
+The multiple linear regression equation based on our model was:
 
-Recall that the GitHub repository is the cloud-hosted directory containing all of your project files as well as their version history.
+price = 91,770 + (317.6347 * sqft_living) - (62,950 * bedrooms)
 
-The requirements are the same as in [Phase 1](https://github.com/learn-co-curriculum/dsc-phase-1-project-v2-3#github-repository), except for the required sections in the `README.md`.
+This equation represents the relationship between the 'price' of a house and its square footage of living space ('sqft_living') and the number of bedrooms ('bedrooms'). Each coefficient represents the change in the 'price' associated with a one-unit change in the respective independent variable, holding all other variables constant.
 
-For this project, the `README.md` file should contain:
+### Model Fit
 
-* Overview
-* Business and Data Understanding
-  * Explain your stakeholder audience here
-* **Modeling**
-* **Regression Results**
-* Conclusion
+<img width="690" alt="Model fit" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/5fc1c639-f525-4c79-963f-100a3602bc40">
 
-Just like in Phase 1, the `README.md` file should be the bridge between your non technical presentation and the Jupyter Notebook. It should not contain the code used to develop your analysis, but should provide a more in-depth explanation of your methodology and analysis than what is described in your presentation slides.
+The plot above shows the true (blue) vs. predicted (red) values, with the particular predictor (in this case, sqft_living) along the x-axis.
 
-## Grading
+<img width="690" alt="model fit 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/0c4382ab-b8f6-4b16-b0bf-8c92bb196f11">
 
-***To pass this project, you must pass each project rubric objective.*** The project rubric objectives for Phase 2 are:
+The plot above shows the fit for the other predictor, bedrooms
 
-1. Attention to Detail
-2. Statistical Communication
-3. Data Preparation Fundamentals
-4. Linear Modeling
+### Partial Regression Plot / Plotting Residuals
 
-### Attention to Detail
+<img width="690" alt="partial" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/c1491370-38a0-4750-9f34-b8c484111ff2">
 
-Just like in Phase 1, this rubric objective is based on your completion of checklist items. ***In Phase 2, you need to complete 70% (7 out of 10) or more of the checklist elements in order to pass the Attention to Detail objective.***
+The above image shows a plot of the regression with the "sqft_living" as the exogenous variable
 
-**NOTE THAT THE PASSING BAR IS HIGHER IN PHASE 2 THAN IT WAS IN PHASE 1!**
+<img width="690" alt="partial 2" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/0229b1f6-b40b-42e7-8c84-642fc087056b">
 
-The standard will increase with each Phase, until you will be required to complete all elements to pass Phase 5 (Capstone).
+The above image shows a plot regresion of exogenous variable against bedrooms
 
-#### Exceeds Objective
+### 3rd Model: Multiple Regression with Many Features including the One-Hot Encoded Variables
 
-80% or more of the project checklist items are complete
+Since we have a model with 1 predictor (sqft_living) as well as a model with 2 predictors (sqft_living and bedrooms), we tried a model that uses all of the available numeric columns as features. The model was a multiple linear regression model (Model: OLS) with eight independent variables.
+So, the multiple linear regression equation based on this output is:
 
-#### Meets Objective (Passing Bar)
+price = 44,920 + (311.64 * sqft_living) + (11,990 * bathrooms) - (67,170 * bedrooms) + (17,060 * floors) - (4768.5025 * condition_Fair) + (49,570 * condition_Good) + (44,370 * condition_Poor) + (122,500 * condition_Very Good)
 
-70% of the project checklist items are complete
+This equation represents the relationship between the 'price' of a house and multiple independent variables, including square footage of living space ('sqft_living'), the number of bathrooms ('bathrooms'), the number of bedrooms ('bedrooms'), the number of floors ('floors'), and four categorical variables representing different conditions ('condition_Fair', 'condition_Good', 'condition_Poor', 'condition_Very Good'). Each coefficient represents the change in the 'price' associated with a one-unit change in the respective independent variable, holding all other variables constant.
 
-#### Approaching Objective
+<img width="690" alt="many features" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/a0e1e819-756a-4ce0-a17f-dcb3c8425fa4">
 
-60% of the project checklist items are complete
+The avove plot shows partregress grid using third_results as the model
 
-#### Does Not Meet Objective
+## Conclusion 
+Based on the provided interpretation of the three model results and the business problem faced by the real estate agency Amani, we can draw the following conclusions
 
-50% or fewer of the project checklist items are complete
+  1. Baseline Model:
+The baseline model, which includes only the 'sqft_living' variable, has an RMSE of approximately 261,655 USD and an R² of 0.4927. While it provides a basic estimate of home prices, it has room for improvement in both prediction accuracy and explanatory power.
 
-### Statistical Communication
+  2. Second Model:
+The second model, incorporating 'sqft_living' and 'bedrooms,' shows a slight improvement over the baseline. It has a lower RMSE (approximately 257612.12 USD) and a slightly higher R² (0.5082). However, further enhancements are possible.
 
-Recall that communication is one of the key data science "soft skills". In Phase 2, we are specifically focused on Statistical Communication. We define Statistical Communication as:
+  3. Third Model:
+The third model, including all chosen independent variables, performs the best among the models. It has the lowest RMSE (approximately 255203.69 USD) and the highest R² (0.5174). This model demonstrates the highest prediction accuracy.
 
-> Communicating **results of statistical analyses** to diverse audiences via writing and live presentation
+The best model chose out of the three is the third model because of:
 
-Note that this is the same as in Phase 1, except we are replacing "basic data analysis" with "statistical analyses".
+  1. Model Performance:
 
-High-quality Statistical Communication includes rationale, results, limitations, and recommendations:
+The third model, which incorporates 'condition,' 'bedrooms,' 'bathrooms,' 'sqft_living,' and 'floors,' exhibits the best overall performance among the models considered.
 
-* **Rationale:** Explaining why you are using statistical analyses rather than basic data analysis
-  * For example, why are you using regression coefficients rather than just a graph?
-  * What about the problem or data is suitable for this form of analysis?
-  * For a data science audience, this includes your reasoning for the changes you applied while iterating between models.
-* **Results:** Describing the overall model metrics and feature coefficients
-  * You need at least one overall model metric (e.g. r-squared or RMSE) and at least two feature coefficients.
-  * For a business audience, make sure you connect any metrics to real-world implications. You do not need to get into the details of how linear regression works.
-  * For a data science audience, you don't need to explain what a metric is, but make sure you explain why you chose that particular one.
-* **Limitations:** Identifying the limitations and/or uncertainty present in your analysis
-  * This could include p-values/alpha values, confidence intervals, assumptions of linear regression, missing data, etc.
-  * In general, this should be more in-depth for a data science audience and more surface-level for a business audience.
-* **Recommendations:** Interpreting the model results and limitations in the context of the business problem
-  * What should stakeholders _do_ with this information?
+  2. Prediction Accuracy:
 
-#### Exceeds Objective
+The third model has the lowest Root Mean Squared Error (RMSE) of approximately 255203.69 USD, indicating the highest prediction accuracy among the models. This means that the model's predictions are, on average, the closest to the actual sale prices.
 
-Communicates the rationale, results, limitations, and specific recommendations of statistical analyses
+  3. Explanatory Power:
 
-> See above for extended explanations of these terms.
+The third model also has the highest R-squared (R²) value of approximately 0.5174, signifying the greatest explanatory power. It explains about 51.74% of the variance in home prices, suggesting that it provides the most comprehensive understanding of the factors influencing sale values.
 
-#### Meets Objective (Passing Bar)
+The model built offers a valuable tool for the agency to formulate effective pricing strategies. It provides coefficients associated with each feature, allowing the agency to make more precise price estimates based on a property's specific attributes. Additionally, by comparing these estimated prices to real-world prices, the agency can spot instances where properties are priced too high or too low, enabling them to make appropriate adjustments to optimize their sales potential.
 
-Successfully communicates the results of statistical analyses without any major errors
+## Recommendations
+Based on the the business questions and objectives of the project and the third model, which includes 'condition,' 'bedrooms,' 'bathrooms,' 'sqft_living,' and 'floors,' the following are detailed recommendations for the real estate agency Amani:
 
-> The minimum requirement is to communicate the _results_, meaning at least one overall model metric (e.g. r-squared or RMSE) as well as at least two feature coefficients. See the Approaching Objective section for an explanation of what a "major error" means.
+  1. Estimating the Impact of Specific Renovation Projects:
+The agency can use the Third Model to provide homeowners with estimates of how specific renovation projects will impact the resale value of their homes. This will assist homeowners in estimating the impact of specific renovations, create a user-friendly interface or tool where homeowners can input details about their renovation plans, such as the number of bedrooms, bathrooms, the condition of the property, square footage of living space, and the number of floors. The model can then generate predictions of the expected increase in home value after these renovations. Homeowners can make informed decisions about which renovation projects to prioritize, based on their expected return on investment (ROI). This will empower homeowners to invest in renovations that will maximize their property's resale value.
 
-#### Approaching Objective
+  2. Identifying Renovation Projects with the Most Impact:
+Amani can utilize the third model to identify which specific renovation projects or features have the most significant impact on a home's market value in the northwestern county. They can conduct a feature importance analysis using the third model. This analysis can highlight which variables (e.g., bedrooms, bathrooms, condition) have the most substantial influence on home prices. The model can then provide rankings or insights into which renovations or property features contribute the most to home value. By identifying the most impactful renovation projects and features, the agency can guide homeowners toward investments that are likely to yield the highest returns. This can also inform marketing strategies and property listings for sellers.
 
-Communicates the results of statistical analyses with at least one major error
+  3. Correlation of Bedrooms, Bathrooms, Grade, and Square Footage with Sale Price:
+They can leverage the third model to explain how the number of bedrooms, bathrooms, the grade of a house, and its square footage correlate with its sale price in King County. They can utilize the model's coefficients and feature importance analysis to explain the correlations between these variables and sale price. This will provide homeowners and buyers with insights into how each of these factors influences home prices, allowing them to make more informed decisions. Homeowners can understand which property features are highly valued in the real estate market, potentially guiding them in making renovations or improvements that align with market preferences. Buyers can use this information to assess property values based on their preferences and requirements.
 
-> A major error means that some aspect of your explanation is fundamentally incorrect. For example, if a feature coefficient is negative and you say that an increase in that feature results in an increase of the target, that would be a major error. Another example would be if you say that the feature with the highest coefficient is the "most statistically significant" while ignoring the p-value. One more example would be reporting a coefficient that is not statistically significant, rather than saying "no statistically significant linear relationship was found"
+  4. Identifying Combinations of Renovation Projects:
+The third model will help identify specific combinations of renovation projects that provide an interdependent effect on a home's market value. They can use the model to analyze the effects of combining different renovation projects. Identify combinations that result in combined effects on home values. This will provide homeowners with recommendations on the combinations of renovations that may maximize their property's resale value.
 
-> "**If a coefficient's t-statistic is not significant, don't interpret it at all.** You can't be sure that the value of the corresponding parameter in the underlying regression model isn't really zero." _DeVeaux, Velleman, and Bock (2012), Stats: Data and Models, 3rd edition, pg. 801_. Check out [this website](https://web.ma.utexas.edu/users/mks/statmistakes/TOC.html) for extensive additional examples of mistakes using statistics.
-
-> The easiest way to avoid making a major error is to have someone double-check your work. Reach out to peers on Slack and ask them to confirm whether your interpretation makes sense!
-
-#### Does Not Meet Objective
-
-Does not communicate the results of statistical analyses
-
-> It is not sufficient to just display the entire results summary. You need to pull out at least one overall model metric (e.g. r-squared, RMSE) and at least two feature coefficients, and explain what those numbers mean.
-
-### Data Preparation Fundamentals
-
-We define this objective as:
-
-> Applying appropriate **preprocessing** and feature engineering steps to tabular data in preparation for statistical modeling
-
-The two most important components of preprocessing for the Phase 2 project are:
-
-* **Handling Missing Values:** Missing values may be present in the features you want to use, either encoded as `NaN` or as some other value such as `"?"`. Before you can build a linear regression model, make sure you identify and address any missing values using techniques such as dropping or replacing data.
-* **Handling Non-Numeric Data:** A linear regression model needs all of the features to be numeric, not categorical. For this project, ***be sure to pick at least one non-numeric feature and try including it in a model.*** You can identify that a feature is currently non-numeric if the type is `object` when you run `.info()` on your dataframe. Once you have identified the non-numeric features, address them using techniques such as ordinal or one-hot (dummy) encoding.
-
-There is no single correct way to handle either of these situations! Use your best judgement to decide what to do, and be sure to explain your rationale in the Markdown of your notebook.
-
-Feature engineering is encouraged but not required for this project.
-
-#### Exceeds Objective
-
-Goes above and beyond with data preparation, such as feature engineering or merging in outside datasets
-
-> One example of feature engineering could be using the `date` feature to create a new feature called `season`, which represents whether the home was sold in Spring, Summer, Fall, or Winter.
-
-> One example of merging in outside datasets could be finding data based on ZIP Code, such as household income or walkability, and joining that data with the provided CSV.
-
-#### Meets Objective (Passing Bar)
-
-Successfully prepares data for modeling, including converting at least one non-numeric feature into ordinal or binary data and handling missing data as needed
-
-> As a reminder, you can identify the non-numeric features by calling `.info()` on the dataframe and looking for type `object`.
-
-> Your final model does not necessarily need to include any features that were originally non-numeric, but you need to demonstrate your ability to handle this type of data.
-
-#### Approaching Objective
-
-Prepares some data successfully, but is unable to utilize non-numeric data
-
-> If you simply subset the dataframe to only columns with type `int64` or `float64`, your model will run, but you will not pass this objective.
-
-#### Does Not Meet Objective
-
-Does not prepare data for modeling
-
-### Linear Modeling
-
-According to [Kaggle's 2020 State of Data Science and Machine Learning Survey](https://www.kaggle.com/kaggle-survey-2020), linear and logistic regression are the most popular machine learning algorithms, used by 83.7% of data scientists. They are small, fast models compared to some of the models you will learn later, but have limitations in the kinds of relationships they are able to learn.
-
-In this project you are required to use linear regression as the primary statistical analysis, although you are free to use additional statistical techniques as appropriate.
-
-#### Exceeds Objective
-
-Goes above and beyond in the modeling process, such as recursive feature selection
-
-#### Meets Objective (Passing Bar)
-
-Successfully builds a baseline model as well as at least one iterated model, and correctly extracts insights from a final model without any major errors
-
-> We are looking for you to (1) create a baseline model, (2) iterate on that model, making adjustments that are supported by regression theory or by descriptive analysis of the data, and (3) select a final model and report on its metrics and coefficients
-
-> Ideally you would include written justifications for each model iteration, but at minimum the iterations must be _justifiable_
-
-> For an explanation of "major errors", see the description below
-
-#### Approaching Objective
-
-Builds multiple models with at least one major error
-
-> The number one major error to avoid is including the target as one of your features. For example, if the target is `price` you should NOT make a "price per square foot" feature, because that feature would not be available if you didn't already know the price.
-
-> Other examples of major errors include: using a target other than `price`, attempting only simple linear regression (not multiple linear regression), dropping multiple one-hot encoded columns without explaining the resulting baseline, or using a unique identifier (`id` in this dataset) as a feature.
-
-#### Does Not Meet Objective
-
-Does not build multiple linear regression models
-
-## Getting Started
-
-Please start by reviewing the contents of this project description. If you have any questions, please ask your instructor ASAP.
-
-Next, you will need to complete the [***Project Proposal***](#project_proposal) which must be reviewed by your instructor before you can continue with the project.
-
-Here are some suggestions for creating your GitHub repository:
-
-1. Fork the [Phase 2 Project Repository](https://github.com/learn-co-curriculum/dsc-phase-2-project-v2-3), clone it locally, and work in the `student.ipynb` file. Make sure to also add and commit a PDF of your presentation to your repository with a file name of `presentation.pdf`.
-2. Or, create a new repository from scratch by going to [github.com/new](https://github.com/new) and copying the data files from the Phase 2 Project Repository into your new repository.
-   - Recall that you can refer to the [Phase 1 Project Template](https://github.com/learn-co-curriculum/dsc-project-template) as an example structure
-   - This option will result in the most professional-looking portfolio repository, but can be more complicated to use. So if you are getting stuck with this option, try forking the project repository instead
+These recommendations align with the agency's goal of offering comprehensive guidance and enhancing decision-making for clients in the real estate market.
 
 ## Summary
-
-This is your first modeling project! Take what you have learned in Phase 2 to create a project with a more sophisticated analysis than you completed in Phase 1. You will build on these skills as we move into the predictive machine learning mindset in Phase 3. You've got this!
+In summary, the project study suggests that the number of bedrooms, square footage of living area, condition, number of bedrooms, bathrooms and floors are important factors to consider when determining the price of a home. However, it is essential to consider other market factors and property-specific attributes in conjunction with the findings of this analysis to arrive at an accurate and competitive listing price such as architectural style, lot size and landscaping, upgrades and amenities, historical sales data, market trends, school district, crime rate, zoning and regulations.

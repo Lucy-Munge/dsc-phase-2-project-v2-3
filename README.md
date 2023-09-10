@@ -1,4 +1,5 @@
-# Group 17 Project Description
+# Group 17 
+# Project Description
 
 ## King County House Sales Analysis & Regression Modeling
 ### Project Overview
@@ -47,19 +48,19 @@ Upon carefully choosing, analyzing, cleansing, and generating descriptive statis
 
 ## Visualization
 
-<img width="690" alt="Scatter plot 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/35b8fa8f-f392-43ef-a592-ded436d60539">
+![Screenshot 2023-09-10 193707](https://github.com/frankkiptoo/phase-2-project-group-17/assets/133040810/12ca04c2-be51-4b34-8d56-873db2897a99)
 
 
 From the above scatter plot, we observe that sqft_living has a continuous positive correlation with price.
 
-<img width="690" alt="Condition 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/fe151ecf-492e-43d2-b7e4-db7357a272e9">
+![Screenshot 2023-09-10 193826](https://github.com/frankkiptoo/phase-2-project-group-17/assets/133040810/d1551170-6bc9-443f-8826-5beb555b2e97)
 
 From the bar plot above we observe that houses in very good condition are the most expensive, while the ones in fair and poor condition are the most affordable, therefore the better the condition of the houses the higher the price. 
 
 ## Modeling
 
 ### Baseline Model: Simple Linear Regression
-<img width="690" alt="sqft scatter 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/b15ddba1-6fc4-42d6-81b2-39864bb2bb48">
+![Screenshot 2023-09-10 193913](https://github.com/frankkiptoo/phase-2-project-group-17/assets/133040810/d8343a8b-eec7-43b4-9867-433389aec437)
 
 For our multiple linear regression, we built a simple linear regression to be the baseline in order to evaluate our model.
 
@@ -68,7 +69,7 @@ Since sqft_living was the feature with the strongest correlation, we built a sim
 
 ### Simple Linear Regression Visualization
 
-<img width="690" alt="slr actual" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/5c35ad9e-f59b-4bb7-a8e9-13a809ada3e9"> 
+![Screenshot 2023-09-10 194015](https://github.com/frankkiptoo/phase-2-project-group-17/assets/133040810/b0e18798-1b61-42af-93c6-97be39f484fd)
 
 ### 2nd Model: Adding another Independent variable
 
@@ -81,21 +82,21 @@ This equation represents the relationship between the 'price' of a house and its
 
 ### Model Fit
 
-<img width="690" alt="Model fit" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/5fc1c639-f525-4c79-963f-100a3602bc40">
+![Screenshot 2023-09-10 194117](https://github.com/frankkiptoo/phase-2-project-group-17/assets/133040810/4672b6d6-aba0-460c-8d08-908ee9bf0ba5)
 
 The plot above shows the true (blue) vs. predicted (red) values, with the particular predictor (in this case, sqft_living) along the x-axis.
 
-<img width="690" alt="model fit 1" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/0c4382ab-b8f6-4b16-b0bf-8c92bb196f11">
+![Screenshot 2023-09-10 194607](https://github.com/frankkiptoo/phase-2-project-group-17/assets/133040810/dbfa97df-88cd-4b65-8b52-69a4541999e6)
 
 The plot above shows the fit for the other predictor, bedrooms
 
 ### Partial Regression Plot / Plotting Residuals
 
-<img width="690" alt="partial" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/c1491370-38a0-4750-9f34-b8c484111ff2">
+![Screenshot 2023-09-10 195059](https://github.com/frankkiptoo/phase-2-project-group-17/assets/133040810/912baa63-557f-4b15-a7bf-b80d9416a160)
 
 The above image shows a plot of the regression with the "sqft_living" as the exogenous variable
 
-<img width="690" alt="partial 2" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/0229b1f6-b40b-42e7-8c84-642fc087056b">
+![Screenshot 2023-09-10 195133](https://github.com/frankkiptoo/phase-2-project-group-17/assets/133040810/fcfd43c8-4646-4af4-8210-4b8be3b0072d)
 
 The above image shows a plot regresion of exogenous variable against bedrooms
 
@@ -108,7 +109,7 @@ price = 44,920 + (311.64 * sqft_living) + (11,990 * bathrooms) - (67,170 * bedro
 
 This equation represents the relationship between the 'price' of a house and multiple independent variables, including square footage of living space ('sqft_living'), the number of bathrooms ('bathrooms'), the number of bedrooms ('bedrooms'), the number of floors ('floors'), and four categorical variables representing different conditions ('condition_Fair', 'condition_Good', 'condition_Poor', 'condition_Very Good'). Each coefficient represents the change in the 'price' associated with a one-unit change in the respective independent variable, holding all other variables constant.
 
-<img width="690" alt="many features" src="https://github.com/learn-co-curriculum/dsc-data-serialization-lab/assets/134168984/a0e1e819-756a-4ce0-a17f-dcb3c8425fa4">
+![Screenshot 2023-09-10 195218](https://github.com/frankkiptoo/phase-2-project-group-17/assets/133040810/6d18082b-30cc-4ca0-a5c7-07d199752158)
 
 The avove plot shows partregress grid using third_results as the model
 
